@@ -1,6 +1,6 @@
 # Django settings for sog project.
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -110,7 +110,7 @@ TEMPLATE_DIRS = (
 )
 
 INSTALLED_APPS = (
-    'logic'
+    'logic',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
