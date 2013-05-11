@@ -1,3 +1,4 @@
+#-*- coding: utf-8 -*-
 from django.conf.urls import patterns, include, url
 
 # Uncomment the next two lines to enable the admin:
@@ -7,6 +8,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
 	url(r'^$', 'logic.views.home'),
 	url(r'^accueil/$', 'logic.views.home'),
+	url(r'^fishing/$', 'logic.views.fishing'),
     # Examples:
     # url(r'^$', 'sog.views.home', name='home'),
     # url(r'^sog/', include('sog.foo.urls')),

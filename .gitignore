@@ -3,3 +3,8 @@
 *~
 
 *.sql
+
+
+logic/generated/
+
+*.out

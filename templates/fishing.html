@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+
+ {% block content %}
+ 	<h3> I've been crawling </h3>
+ 	
+ 	<p> 
+ 	<ul>
+	{% for sequent in dem %}
+    		<li> - Sequent : {{ sequent }}</li>
+	{% endfor %}
+	</ul>
+ 	</p>
+
+	<form action="/fishing/" method="post">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Submit" />
+	</form>
+
+{% endblock %}
