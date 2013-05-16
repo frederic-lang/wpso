@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+ {% block content %}
+ 	<h3> Documentation </h3>
+ 	<p> Voici un exemple de démonstration. Ce code prouve la proposition "(not exists x, not A) implies (forall x, A)". Cela correspond au fait que s'il n'existe pas de contre-exemple x à la proposition A, alors cette A est vrai quelque soit x. </p>
+
+	<p>
+	new();<br/>
+	addhyp(0,not A);<br/>
+	addhyp(0, not exists x, not A);<br/>
+	axiomintro(0, 0);<br/>
+	axiomintro(1, 0);<br/>
+	existsintro(1, v, x);<br/>
+	notelim(1,2);<br/>
+	falseelim(3, A);<br/>
+	new();<br/>
+	addhyp(4, not exists x, not A);<br/>
+	addhyp(4, A);<br/>
+	axiomintro(1,4);<br/>
+	new();<br/>
+	addhyp(6, not exists x, not A);<br/>
+	excludedmiddle(6, A);<br/>
+	orelim(7, 5, 3);<br/>
+	forallintro(8, x);<br/>
+	impliesintro(9,0);<br/>
+	</p>
+
+ {% endblock %}

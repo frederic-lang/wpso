@@ -7,7 +7,11 @@ from logic.mathplus.compiler import make
 def home(request):
   return render(request, 'home.html', {'current_date': datetime.now()})
 
-
+def doc(request):
+  return render(request, 'doc.html', {'current_date': datetime.now()})
+ 
+def example(request):
+  return render(request, 'doc.html', {'current_date': datetime.now()})
  
 def fishing(request):
     if request.method == 'POST':  # S'il s'agit d'une requête POST

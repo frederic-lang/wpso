@@ -9,17 +9,21 @@ def make(text) :
 	try :
 		r = yacc_parse(text)
 		instructions = r[1]
-		sequents = []
+		sequents = printed = []
+		n = 0
 		for i in instructions :
 			f=i[0]
 			args=i[1]
 			f(sequents, *args)
-		return [str(s) for s in sequents]
-	except IndexError as e :
-		return [ "tu as probablement appelé un numéro de sequent ou de proposition qui n'existe pas", str(e) ]
+		for  j in range(len(sequents)) :
+			printed[j] = "Séquent " + str(j) + " : " + str(sequents[j])
+		return printed
+		
+	#except IndexError as e :
+	#	return [ "tu as probablement appelé un numéro de sequent ou de proposition qui n'existe pas", str(e) ]
 	except Exception as e :
 		return [ "erreur : " + str(e) ]
-	
+
 	
 if __name__ == "__main__" :
 	import sys

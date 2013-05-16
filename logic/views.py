@@ -10,6 +10,9 @@ def home(request):
 def doc(request):
   return render(request, 'doc.html', {'current_date': datetime.now()})
  
+def example(request):
+  return render(request, 'example.html', {'current_date': datetime.now()})
+ 
 def fishing(request):
     if request.method == 'POST':  # S'il s'agit d'une requête POST
         form = CallForm(request.POST)  # Nous reprenons les données

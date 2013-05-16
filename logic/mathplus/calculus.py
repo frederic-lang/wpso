@@ -16,10 +16,11 @@ def trueintro(sequents, i):
 	sequents[i].conclusion = Node( "True", [])
 	
 def axiomintro(sequents, a,b) :
-	sequents[b].conclusion = sequents[b].hyp[a].copy()
+	s = Sequent(sequents[b].hyp, sequents[b].hyp[a])
+	sequents.append(s)
 
 def falseelim(sequents, i, p):
-	if sequents[i].conclusion.name == "false" :
+	if sequents[i].conclusion.name == "False" :
 		sequents[i].conclusion = p
 	
 def andintro(sequents, i,j):
@@ -49,7 +50,9 @@ def orelim(sequents, i, j, k): # à améliorer
 	seqb = sequents[k]
 	[a, b] = seqor.conclusion.children
 	if seqa.conclusion == seqb.conclusion and ( a in seqa.hyp) and ( b in seqb.hyp ) and seqor.conclusion.name == "or":
-		if seq.hyp.remove(a) == seqb.hyp.remove(b) : 
+		print "ca passe"
+		if seqa.hyp.remove(a) == seqb.hyp.remove(b) : 
+			print "ca repasse "
 			seqa.hyp.append(a)
 			sequents.append(Sequent(seqb.hyp, seqb.conclusion))
 			seqb.hyp.append(b)
@@ -78,9 +81,9 @@ def notintro(sequents, i, j) :
 
 def notelim(sequents, i, j) :
 	if sequents[i].hyp == sequents[j].hyp and sequents[j].conclusion.name == "not" :
-		[p] == sequents[j].conclusion.children
+		[p] = sequents[j].conclusion.children
 		if p == sequents[i].conclusion :
-			sequents.append(Sequents(sequents[j].hyp, Node("False", [])))
+			sequents.append(Sequent(sequents[j].hyp, Node("False", [])))
 
 def forallintro(sequents, i, x) :
 	"""à améliorer"""

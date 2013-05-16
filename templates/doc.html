@@ -5,7 +5,7 @@
  	<h3> Documentation </h3>
  	<p>
  	Chaque fonction permet de créer ou modifier des séquents.<br/> 
- 	Elles doivent être suivi d'un point virgule.<br/>
+ 	Elles doivent être suivies d'un point virgule.<br/>
  	Les arguments sont soit des entiers, soit des propositions avec une syntaxe correcte (ex :  forall x , x belongs y )<br/>
  	Les séquents sont numérotés à partir de 0, ainsi que les propositions qui constituent les hypothèses d'un séquent<br/>
  	Les fonctions ci-dessous ne permettent de construire que des séquent "justes"
@@ -29,6 +29,9 @@
     		<li>  <i> notelim(i, j) : </i> Si les séquent i et j ont les mêmes hypothèses et respectivement pour conclusion "P" et "not P", crée un séquent conclut par "False"</li>
     		<li>  <i> forallintro(i, x) : </i> introduit le quantificateur "forall" sur la variable "x" dans le séquent i</li>
     		<li>  <i> forallelim(i, v) : </i> si la conclusion du séquent i est du type "forall x, P(x)", elle remplacée par "P(v)"</li>
+    		<li>  <i> existsintro(i, v, x) : </i> remplace la conclusion P(v) du séquent i par "exists x, P(x)" </li>
+    		<li>  <i> existselim(i, j) : </i> remplace la conclusion "exists x, P(x)" du séquent i par la conclusion du séquent j sans son hypothèse P(x)</li>
+    		<li>  <i> excludedmiddle(i, p) : </i> remplace la conclusion du séquent i par "p or not p" </li>
 
 	</ul>
  	</p>
@@ -38,11 +41,4 @@
 {% endblock %}
 
 
-
-def forallelim(sequents, i, v) :
-	s = sequents[i]
-	if s.conclusion.name == "forall" :
-		[x, q] = s.conclusion.children
-		q.substitute(x, v)
-		s.conclusion = q
 		

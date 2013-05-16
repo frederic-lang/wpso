@@ -49,7 +49,7 @@ def p_expression_op(p):
 
 def p_expression_not(p):
 	'''expression : NOT expression '''
-	p[0] = Node( "not", [p[1]] )
+	p[0] = Node( "not", [p[2]] )
 
 def p_error(e ):
 	raise Exception("error : %s" %e )

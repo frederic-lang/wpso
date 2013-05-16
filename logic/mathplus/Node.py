@@ -18,12 +18,26 @@ opData["not"] = ( Type.PROP, (Type.PROP,) )
 opData["True"] = ( Type.PROP,)
 opData["False"] = ( Type.PROP,)
 
+
+def wellformednode(n) :
+	if type(n) == unicode or type(n) == str :
+		return Node(n, [])
+	elif type(n) == Node :
+		return n.copy()
+	else :
+		 raise Exception("L'objet ('" 
+					+ str(n)
+					+ " de type "
+					+ str(type(n))
+					+ "') ne permettent pas de former un Node")
+					
+
 class Node(object) :
 	def __init__(self, name, children = []) :
 		self.name = name
-		self.children = list(children)
+		self.children = [wellformednode(n) for n in children]
 		self.type = Type.UNDEFINED
-		self.type = opData[self.name][0]
+		#self.type = opData[self.name][0]
 	def substitute(self, x, y) :
 		def match(e) :
 			if e == x :
@@ -46,6 +60,7 @@ class Node(object) :
 			text = self.name
 		return text
 	def __eq__(self, o) :
-		return self.name == o.name and self.children == o.children
+		wo = wellformednode(o)
+		return self.name == wo.name and self.children == wo.children
 	def copy(self) :
 		return Node(self.name, self.children)
