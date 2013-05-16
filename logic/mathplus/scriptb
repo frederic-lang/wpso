@@ -1,0 +1,11 @@
+new();
+new();
+addhyp(0,a belongs b);
+forallintro(0, x);
+forallelim(2, z);
+addhyp(1,a belongs b);
+axiomintro(0,1);
+new();
+addhyp(2,P implies Q);
+existsintro(1, a, b);
+excludedmiddle(3, d belongs f);

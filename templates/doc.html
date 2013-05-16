@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+ {% block content %}
+ 	<h3> Documentation </h3>
+ 	<p>
+ 	Chaque fonction permet de créer ou modifier des séquents.<br/> 
+ 	Elles doivent être suivi d'un point virgule.<br/>
+ 	Les arguments sont soit des entiers, soit des propositions avec une syntaxe correcte (ex :  forall x , x belongs y )<br/>
+ 	Les séquents sont numérotés à partir de 0, ainsi que les propositions qui constituent les hypothèses d'un séquent<br/>
+ 	Les fonctions ci-dessous ne permettent de construire que des séquent "justes"
+ 	<p> 
+ 	<ul>
+
+    		<li>  <i> new() : </i> crée un séquent </li>
+    		<li>  <i> addhyp(i, p) : </i> ajoute la proposition p dans les hypothèses du séquent numéro i </li>
+    		<li>  <i> trueintro(i) : </i> remplace la conclusion du séquent par "True" </li>
+    		<li>  <i> axiomintro(i, j) : </i> remplace la conclusion du séquent numéro j par son hypothèse numéro i </li>
+    		<li>  <i> falseelim(i, p) : </i> Si la conclusion du séquent i est "False", la remplace par la proposition p </li>
+    		<li>  <i> andintro(i, j) : </i> Si les séquents i et j ont les mêmes hypothèses, crée un séquent avec conjonction de leurs conclusion </li>
+    		<li>  <i> left(i) : </i> remplace la conclusion du séquent i par son membre gauche si c'est une conjonction </li>
+    		<li>  <i> right(i) : </i> la même chose à droite </li>
+    		<li>  <i> orintroright(i, p) : </i> remplace la conclusion du séquent i par une disjonction de son ancienne conclusion à gauche et de la proposition p à droite</li>
+    		<li>  <i> orintroleft(i, p) : </i> Pareil mais inversement </li>
+    		<li>  <i> orelim(i, j, k) : </i> si la conclusion du séquent est A\/B, que les séquents i et j ont la meme conclusion C et ont les mêmes hypothèses avec A et B en plus, crée le séquent de conclusion C sans les hypothèses A ni B </li>
+    		<li>  <i> impliesintro(i, j) : </i> dans le séquent i, passe l'hypothèse numéro i dans une implication dans la conclusion </li>
+    		<li>  <i> implieselim(i, j) : </i> Si le séquent j a une conclusion "A -> B" et que A est la conclusion du séquent i </li>
+    		<li>  <i> notintro(i, j) : </i> Si le séquent a pour conclusion "False", elle est remplacée par la négation de l'hypothèse j</li>
+    		<li>  <i> notelim(i, j) : </i> Si les séquent i et j ont les mêmes hypothèses et respectivement pour conclusion "P" et "not P", crée un séquent conclut par "False"</li>
+    		<li>  <i> forallintro(i, x) : </i> introduit le quantificateur "forall" sur la variable "x" dans le séquent i</li>
+    		<li>  <i> forallelim(i, v) : </i> si la conclusion du séquent i est du type "forall x, P(x)", elle remplacée par "P(v)"</li>
+
+	</ul>
+ 	</p>
+
+
+
+{% endblock %}
+
+
+
+def forallelim(sequents, i, v) :
+	s = sequents[i]
+	if s.conclusion.name == "forall" :
+		[x, q] = s.conclusion.children
+		q.substitute(x, v)
+		s.conclusion = q
+		

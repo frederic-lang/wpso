@@ -2,12 +2,13 @@
 from datetime import datetime
 from django.shortcuts import render
 from logic.forms import CallForm
-from logic.parser import yacc_parse
+from logic.mathplus.compiler import make
  
 def home(request):
   return render(request, 'home.html', {'current_date': datetime.now()})
 
-
+def doc(request):
+  return render(request, 'doc.html', {'current_date': datetime.now()})
  
 def fishing(request):
     if request.method == 'POST':  # S'il s'agit d'une requête POST
@@ -18,7 +19,7 @@ def fishing(request):
             # Ici nous pouvons traiter les données du formulaire
             author = form.cleaned_data['author']
             call = form.cleaned_data['call']
- 	    dem = yacc_parse(call)
+ 	    dem = make(call)
 
     else: # Si ce n'est pas du POST, c'est probablement une requête GET
         form = CallForm()  # Nous créons un formulaire vide

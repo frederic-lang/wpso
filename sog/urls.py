@@ -9,6 +9,7 @@ urlpatterns = patterns('',
 	url(r'^$', 'logic.views.home'),
 	url(r'^accueil/$', 'logic.views.home'),
 	url(r'^fishing/$', 'logic.views.fishing'),
+	url(r'^doc/$', 'logic.views.doc'),
     # Examples:
     # url(r'^$', 'sog.views.home', name='home'),
     # url(r'^sog/', include('sog.foo.urls')),
