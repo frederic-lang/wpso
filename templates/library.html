@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+
+ {% block content %}
+
+	<h2> Library ! </h1>
+ 
+{% for demo in demos %}
+    <div class="article">
+        <h3>{{ demo.title }}</h3>
+        <p> <i> {{ demo.lemma }} </i> </p>
+        <p>{{ demo.content }}</p>
+    </div>
+{% empty %}
+    <p>Aucun article.</p>
+{% endfor %}
+
+ {% endblock %}

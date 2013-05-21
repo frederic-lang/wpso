@@ -33,7 +33,7 @@ def wellformednode(n) :
 					
 
 class Node(object) :
-	def __init__(self, name, children = []) :
+	def __init__(self, name = "True", children = []) :
 		self.name = name
 		self.children = [wellformednode(n) for n in children]
 		self.type = Type.UNDEFINED
@@ -64,3 +64,20 @@ class Node(object) :
 		return self.name == wo.name and self.children == wo.children
 	def copy(self) :
 		return Node(self.name, self.children)
+	def isVar(self,x) : 
+		for c in self.children :
+			if c.isVar(x) :
+				return True
+		return x.name == self.name
+	def isFreeVar(self, x) :
+		if self.name == 'forall' or self.name == 'exists' :
+			[ v, p] = self.children
+			if v.name == x.name :
+				return False
+			return p.isFreeVar(x)
+		else :
+			for c in self.children :
+				if c.isFreeVar(x) :
+					return True
+			return x.name == v.name
+				

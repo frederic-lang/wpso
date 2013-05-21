@@ -111,6 +111,7 @@ TEMPLATE_DIRS = (
 
 INSTALLED_APPS = (
     'logic',
+    'library',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

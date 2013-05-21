@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+
+ {% block content %}
+ 	<h3> I've been crawling </h3>
+ 	
+
+	<form action="/accueil/" method="post">{% csrf_token %}
+	{{ form.as_p }}
+	<input type="submit" value="Compile" />
+	<input type="submit" value="Save" />
+	</form>
+
+{% endblock %}

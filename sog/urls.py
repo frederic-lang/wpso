@@ -6,11 +6,13 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$', 'logic.views.home'),
-	url(r'^accueil/$', 'logic.views.home'),
+	url(r'^$', 'library.views.home'),
+	url(r'^home/$', 'library.views.home'),
 	url(r'^fishing/$', 'logic.views.fishing'),
-	url(r'^doc/$', 'logic.views.doc'),
-	url(r'^example/$', 'logic.views.example'),
+	url(r'^doc/$', 'library.views.doc'),
+	url(r'^example/$', 'library.views.example'),
+	url(r'^library/$', 'library.views.show'),
+	url(r'^login/$', 'django.contrib.auth.views.login'),
     # Examples:
     # url(r'^$', 'sog.views.home', name='home'),
     # url(r'^sog/', include('sog.foo.urls')),
