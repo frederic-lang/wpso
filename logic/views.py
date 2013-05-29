@@ -3,7 +3,9 @@ from django.shortcuts import render
 from logic.forms import CallForm
 from logic.mathplus.compiler import Compiler
 from library.models import Demonstration
- 
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def fishing(request):
     c = Compiler()
     if request.method == 'POST':  # S'il s'agit d'une requête POST
@@ -36,4 +38,4 @@ def fishing(request):
         	form = CallForm()  # Nous créons un formulaire vide
 
  
-    return render(request, 'fishing.html', {'sequents' : sequents, 'comment' : comment, 'form' : form })
+    return render(request, 'logic/fishing.html', {'sequents' : sequents, 'comment' : comment, 'form' : form })

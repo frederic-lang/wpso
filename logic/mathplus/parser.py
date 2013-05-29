@@ -4,6 +4,7 @@ from lexer import tokens
 from Node import Node
 from calculus import matchInstruction
 from Sequent import Sequent
+from library.models import Demonstration
 
 def p_explist(p):
     '''explist :
@@ -51,6 +52,11 @@ def p_expression_not(p):
 	'''expression : NOT expression '''
 	p[0] = Node( "not", [p[2]] )
 
+def p_expression_library(p):
+	'''expression : DOLLAR NUMBER DOLLAR'''
+	assert p[2] > 0
+	p[0] = Demonstration.objects.get(id = p[2]).lemma
+	
 def p_error(e ):
 	raise Exception("error : %s" %e )
 	yacc.errok()

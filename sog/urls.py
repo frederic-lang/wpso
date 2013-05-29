@@ -13,6 +13,7 @@ urlpatterns = patterns('',
 	url(r'^example/$', 'library.views.example'),
 	url(r'^library/$', 'library.views.show'),
 	url(r'^login/$', 'django.contrib.auth.views.login'),
+	url(r'^logout/$', 'django.contrib.auth.views.logout'),
     # Examples:
     # url(r'^$', 'sog.views.home', name='home'),
     # url(r'^sog/', include('sog.foo.urls')),

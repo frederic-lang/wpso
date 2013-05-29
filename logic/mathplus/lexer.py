@@ -12,7 +12,8 @@ tokens = (
 'SPACE',
 'RPAREN',
 'LPAREN',
-'SEMICOLON'
+'SEMICOLON',
+'DOLLAR'
 )
 
 t_COMMA = r','
@@ -24,6 +25,7 @@ t_NOT = r'ceciestunenegation|not'
 t_RPAREN = r'\)'
 t_LPAREN = r'\('
 t_SEMICOLON = r';'
+t_DOLLAR = r'\$'
 
 
 def t_NUMBER(t) :

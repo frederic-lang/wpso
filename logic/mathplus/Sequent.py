@@ -15,9 +15,6 @@ class Sequent(object) :
 
 
 
-
-
-
 if __name__ == "__main__" :
 	try :
 		sa = Sequent(3,Node("belongs", ["1", "2"]))

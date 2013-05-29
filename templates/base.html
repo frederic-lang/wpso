@@ -10,17 +10,25 @@
     <nav>
        <ul>
            <li><a href="/">HOME</a></li>
- 	   <li><a href="/fishing/">GO FISHING</a></li>
+ 	   <li><a href="/fishing/">DEMONSTRATE</a></li>
  	   <li><a href="/doc/">DOC</a></li>
  	   <li><a href="/example/">EXEMPLE</a></li>
  	   <li><a href="/library/">LIBRARY</a></li>
+ 	   <li><a href="/login/">LOG IN</a></li>
        </ul>
    </nav>
  
    <section id="content">
-       {% block content %}<h1> I've been crawling </h1>{% endblock %}
+       	{% block content %}
+       		<p>
+       		Soogfish est un site dédié à la vérification formelle de preuve. <br/>
+       		Allez voir à la section EXAMPLE pour voir un exemple de preuve. <br/>
+       		Vous pouvez aussi voir toutes les lemmes établis à la section LIBRARY. <br/>
+       		Vous devez être connecté pour éditer une preuve
+       		</p>
+       	{% endblock %}
    </section>
  
-<footer>© frednboria</footer>
+<footer><br/>© frednboria</footer>
 </body>
 </html>

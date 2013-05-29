@@ -2,13 +2,12 @@
 
 
  {% block content %}
- 	<h3> I've been crawling </h3>
+ 	<h3> Log in and start prooving ! </h3>
  	
 
-	<form action="/accueil/" method="post">{% csrf_token %}
+	<form action="/login/" method="post">{% csrf_token %}
 	{{ form.as_p }}
-	<input type="submit" value="Compile" />
-	<input type="submit" value="Save" />
+	<input type="submit" value="Log in" />
 	</form>
 
 {% endblock %}
