@@ -4,6 +4,9 @@
 from mException import *
 from Sequent import Sequent
 from Node import Node
+from propParser import yacc_parse
+from library.models import Demonstration
+
 
 def new(sequents) :
 	""" create a empty sequent """
@@ -18,6 +21,11 @@ def trueintro(sequents, i):
 def axiomintro(sequents, a,b) :
 	s = Sequent(sequents[b].hyp, sequents[b].hyp[a])
 	sequents.append(s)
+
+def lemmaintro(sequents, n) :
+	lemma = Demonstration.objects.get(id = n)
+	c = yacc_parse(lemma.lemma)
+	sequents.append(Sequent([], c))
 
 def falseelim(sequents, i, p):
 	if sequents[i].conclusion.name == "False" :
@@ -125,6 +133,7 @@ matchInstruction = {
 	"addhyp" : addhyp,
 	"trueintro" : trueintro,
 	"axiomintro" : axiomintro,
+	"lemmaintro" : lemmaintro,
 	"falseelim" : falseelim,
 	"andintro": andintro,
 	"left" : left,
@@ -142,4 +151,12 @@ matchInstruction = {
 	"existselim" : existselim,
 	"excludedmiddle" : excludedmiddle
 	}
+
+
+if __name__ == "__main__" :
+	import sys
+	prog = file(sys.argv[1]).read()
+	result = parser.parse( prog, tracking=True )
+	print "et on a :"
+	print result
 

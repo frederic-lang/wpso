@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 @login_required
 def fishing(request):
     c = Compiler()
+    sequents = c.getSequentsPrinted
     if request.method == 'POST':  # S'il s'agit d'une requête POST
         form = CallForm(request.POST)  # Nous reprenons les données
         
@@ -30,7 +31,6 @@ def fishing(request):
  	    	saved_demo.save()
 
     else: # Si ce n'est pas du POST, c'est probablement une requête GET
-    	sequents = c.getSequentsPrinted
     	comment = "Start your proof here "
         try :
         	form = CallForm(call = request.user.draft) # on récupère le brouillon s'il existe

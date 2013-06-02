@@ -5,9 +5,9 @@ _tabversion = '3.2'
 
 _lr_method = 'LALR'
 
-_lr_signature = '0\r \xd5\xcaV%\xbc_\xf8\xca\x8e\xcb\xa3U\xef'
+_lr_signature = 's\xa1\x8a\xdd4)\x1a@\xbc@V\x97@\x8e\x9f\x8d'
     
-_lr_action_items = {'WORD':([5,9,11,15,17,18,22,],[10,10,10,10,10,10,10,]),'SEMICOLON':([4,7,16,23,25,],[6,-4,-5,-6,-7,]),'INSTRUCTION':([0,1,3,6,],[-1,2,-2,-3,]),'NUMBER':([5,9,11,15,17,18,22,],[8,8,8,8,8,8,8,]),'OPERATOR':([8,10,12,13,14,19,20,21,24,],[-9,-8,15,-12,15,-11,15,15,15,]),'COMMA':([8,10,12,13,14,19,20,21,],[-9,-8,17,-12,18,-11,22,-10,]),'LPAREN':([2,],[5,]),'NOT':([5,9,11,15,17,18,22,],[9,9,9,9,9,9,9,]),'RPAREN':([5,8,10,12,13,19,20,21,24,],[7,-9,-8,16,-12,-11,23,-10,25,]),'QUANTIFIER':([5,9,11,15,17,18,22,],[11,11,11,11,11,11,11,]),'$end':([0,1,3,6,],[-1,0,-2,-3,]),}
+_lr_action_items = {'WORD':([0,3,4,8,9,],[1,1,1,1,1,]),'NUMBER':([0,3,4,8,9,],[2,2,2,2,2,]),'OPERATOR':([1,2,5,6,7,10,11,],[-1,-2,8,-5,8,-4,8,]),'COMMA':([1,2,6,7,10,11,],[-1,-2,-5,9,-4,-3,]),'NOT':([0,3,4,8,9,],[3,3,3,3,3,]),'QUANTIFIER':([0,3,4,8,9,],[4,4,4,4,4,]),'$end':([1,2,5,6,10,11,],[-1,-2,0,-5,-4,-3,]),}
 
 _lr_action = { }
 for _k, _v in _lr_action_items.items():
@@ -16,7 +16,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'explist':([0,],[1,]),'args':([2,],[4,]),'expression':([5,9,11,15,17,18,22,],[12,13,14,19,20,21,24,]),'instr':([1,],[3,]),}
+_lr_goto_items = {'expression':([0,3,4,8,9,],[5,6,7,10,11,]),}
 
 _lr_goto = { }
 for _k, _v in _lr_goto_items.items():
@@ -25,17 +25,10 @@ for _k, _v in _lr_goto_items.items():
        _lr_goto[_x][_k] = _y
 del _lr_goto_items
 _lr_productions = [
-  ("S' -> explist","S'",1,None,None,None),
-  ('explist -> <empty>','explist',0,'p_explist','/home/fred/project/sog/logic/mathplus/parser.py',9),
-  ('explist -> explist instr','explist',2,'p_explist','/home/fred/project/sog/logic/mathplus/parser.py',10),
-  ('instr -> INSTRUCTION args SEMICOLON','instr',3,'p_instr','/home/fred/project/sog/logic/mathplus/parser.py',19),
-  ('args -> LPAREN RPAREN','args',2,'p_args','/home/fred/project/sog/logic/mathplus/parser.py',24),
-  ('args -> LPAREN expression RPAREN','args',3,'p_args','/home/fred/project/sog/logic/mathplus/parser.py',25),
-  ('args -> LPAREN expression COMMA expression RPAREN','args',5,'p_args','/home/fred/project/sog/logic/mathplus/parser.py',26),
-  ('args -> LPAREN expression COMMA expression COMMA expression RPAREN','args',7,'p_args','/home/fred/project/sog/logic/mathplus/parser.py',27),
-  ('expression -> WORD','expression',1,'p_expression_wordornumber','/home/fred/project/sog/logic/mathplus/parser.py',38),
-  ('expression -> NUMBER','expression',1,'p_expression_wordornumber','/home/fred/project/sog/logic/mathplus/parser.py',39),
-  ('expression -> QUANTIFIER expression COMMA expression','expression',4,'p_expression_quantifier','/home/fred/project/sog/logic/mathplus/parser.py',43),
-  ('expression -> expression OPERATOR expression','expression',3,'p_expression_op','/home/fred/project/sog/logic/mathplus/parser.py',47),
-  ('expression -> NOT expression','expression',2,'p_expression_not','/home/fred/project/sog/logic/mathplus/parser.py',51),
+  ("S' -> expression","S'",1,None,None,None),
+  ('expression -> WORD','expression',1,'p_expression_wordornumber','propParser.py',10),
+  ('expression -> NUMBER','expression',1,'p_expression_wordornumber','propParser.py',11),
+  ('expression -> QUANTIFIER expression COMMA expression','expression',4,'p_expression_quantifier','propParser.py',15),
+  ('expression -> expression OPERATOR expression','expression',3,'p_expression_op','propParser.py',19),
+  ('expression -> NOT expression','expression',2,'p_expression_not','propParser.py',23),
 ]
