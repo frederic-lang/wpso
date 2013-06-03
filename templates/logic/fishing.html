@@ -2,20 +2,31 @@
 
 
  {% block content %}
- 	<h3> I've been crawling </h3>
- 	<p> {{ comment }} </p>
+ 	<h3> Edit Your Proof </h3>
  	
- 	<p> 
- 	<ul>
-	{% for sequent in sequents %}
-    		<li>{{ sequent }}</li>
-	{% endfor %}
-	</ul>
- 	</p>
-
-	<form action="/fishing/" method="post">{% csrf_token %}
-	{{ form.as_p }}
-	<input type="submit" value="Compile" />
-	</form>
-
+ 	<div id="comment">
+ 		<p> {{ comment }} </p>
+ 	</div>
+ 	
+	<div id="compiler">
+	
+		<div id="input">
+		<form action="/fishing/" method="post">{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Compile" />
+		</form>
+		</div>
+	
+		<div id="sequents">
+		<p> 
+ 			<ul>
+			{% for sequent in sequents %}
+    				<li>{{ sequent }}</li>
+			{% endfor %}
+			</ul>
+ 		</p>
+ 		</div>
+	
+	</div>
+	
 {% endblock %}

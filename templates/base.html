@@ -6,30 +6,39 @@
 </head>
  
 <body>
+<div id="bloc_page" >
+	<header>
+		<div id="title">
+			<h1>SoogFish!</h1>
+			<h2>Welcome {{ user.username }}</h2> 
+		</div>
+		
+		<nav>
+			<ul>
+				<li><a href="/">HOME</a></li>
+				<li><a href="/fishing/">DEMONSTRATE</a></li>
+				<li><a href="/doc/">DOC</a></li>
+				<li><a href="/example/">EXEMPLE</a></li>
+				<li><a href="/library/">LIBRARY</a></li>
+				<li><a href="/login/">LOG IN</a></li>
+			</ul>
+		</nav>
+	</header>
  
-<header>SoogFish! Welcome {{ user.username }} </header>
-    <nav>
-       <ul>
-           <li><a href="/">HOME</a></li>
- 	   <li><a href="/fishing/">DEMONSTRATE</a></li>
- 	   <li><a href="/doc/">DOC</a></li>
- 	   <li><a href="/example/">EXEMPLE</a></li>
- 	   <li><a href="/library/">LIBRARY</a></li>
- 	   <li><a href="/login/">LOG IN</a></li>
-       </ul>
-   </nav>
  
-   <section id="content">
-       	{% block content %}
+
+	<section id="content">
+	       	{% block content %}
        		<p>
        		Soogfish est un site dédié à la vérification formelle de preuve. <br/>
        		Allez voir à la section EXAMPLE pour voir un exemple de preuve. <br/>
        		Vous pouvez aussi voir toutes les lemmes établis à la section LIBRARY. <br/>
        		Vous devez être connecté pour éditer une preuve
        		</p>
-       	{% endblock %}
-   </section>
+	       	{% endblock %}
+	</section>
  
 <footer><br/>© frednboria</footer>
+</div>
 </body>
 </html>

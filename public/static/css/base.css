@@ -1,7 +1,116 @@
-.niceform dl {clear:left;}
+/* définition de polices */
 
-.niceform dt {float:left;text-align:right;width:120px;line-height:25px;margin: 0 10px 10px 0;}
+@font-face {
+    font-family: 'HeaderPolice';
+    src: url('polices/GoodDog.otf');
+}
 
-.niceform dd {float:left;margin: 0 0 10px 0;}
+/* Eléments principaux de la page */
+ 
+body
+{
+    background: url('images/fond_jaune.png');
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    color: #181818;
+}
+ 
+section
+{
+    margin: auto;
+    border: 1px solid black;
+    text-align: justify;
+    padding: 20px;
+    margin:50px;
+}
+ 
+section h1, footer h1
+{
+    font-family: Arial, serif;
+    font-weight: normal;
+    text-transform: uppercase;
+}
 
-p{ color : blue ;}
+/* Header */
+ 
+header
+{
+    background: url('images/separateur.png') repeat-x bottom;
+    font-family: 'HeaderPolice', serif;
+    font-size: 1.5em;
+    height: 130px;
+    color : navy;
+}
+ 
+#title
+{
+    display: inline-block;
+}
+ 
+header h1
+{
+    font-size: 2.5em;
+    font-weight: normal;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+ 
+header h2
+{
+    font-family: serif;
+    font-size: 0.9em;
+    margin-top: 0px;
+    font-weight: normal;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+
+/* Navigation */
+ 
+nav
+{
+    display: inline-block;
+    text-align: right;
+    font-family: 'HeaderPolice', serif;
+    position: absolute;
+    right: 50px;
+    top: 70px;
+}
+ 
+nav ul
+{
+    list-style-type: none;
+}
+ 
+nav li
+{
+    display: inline-block;
+    margin-right: 15px;
+}
+ 
+nav a
+{
+    font-size: 1.1em;
+    color: #181818;
+    padding-bottom: 3px;
+    text-decoration: none;
+}
+ 
+nav a:hover
+{
+    color: #760001;
+    border-bottom: 3px solid #760001;
+}
+
+
+/* Compiler */
+
+#sequents, #input
+{
+	display: inline-block;
+	margin-right: 45px;
+	padding:8px;
+	vertical-align:top;
+}
