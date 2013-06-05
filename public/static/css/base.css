@@ -9,9 +9,9 @@
  
 body
 {
-    background: url('images/fond_jaune.png');
     font-family: 'Trebuchet MS', Arial, sans-serif;
-    color: #181818;
+    color: black;
+    background-color:#FFE4C4;
 }
  
 section
@@ -20,7 +20,8 @@ section
     border: 1px solid black;
     text-align: justify;
     padding: 20px;
-    margin:50px;
+    margin:30px;
+    background-color:white;
 }
  
 section h1, footer h1
@@ -30,6 +31,10 @@ section h1, footer h1
     text-transform: uppercase;
 }
 
+section a
+{
+	color:red;
+}
 /* Header */
  
 header
@@ -38,7 +43,8 @@ header
     font-family: 'HeaderPolice', serif;
     font-size: 1.5em;
     height: 130px;
-    color : navy;
+    color : #BDBDBD;
+    background-color:beige;
 }
  
 #title
@@ -57,7 +63,6 @@ header h1
  
 header h2
 {
-    font-family: serif;
     font-size: 0.9em;
     margin-top: 0px;
     font-weight: normal;

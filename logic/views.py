@@ -17,7 +17,7 @@ def fishing(request):
             # Ici nous pouvons traiter les données du formulaire
             call = form.cleaned_data['call']
             tit = form.cleaned_data['title']
-            request.user.draft = call # pour enregistrer le "brouillon" d'un utilisateur
+            request.session["draft"] = call # pour enregistrer le "brouillon" d'un utilisateur
             c.setText(call)
  	    if c.compileSuccessfully() :
  	    	sequents = c.getSequentsPrinted()
@@ -33,7 +33,7 @@ def fishing(request):
     else: # Si ce n'est pas du POST, c'est probablement une requête GET
     	comment = "Start your proof here "
         try :
-        	form = CallForm(call = request.user.draft) # on récupère le brouillon s'il existe
+        	form = CallForm(call = request.session["draft"]) # on récupère le brouillon s'il existe
         except :
         	form = CallForm()  # Nous créons un formulaire vide
 

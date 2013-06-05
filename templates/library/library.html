@@ -3,11 +3,11 @@
 
  {% block content %}
 
-	<h2> Library ! </h1>
+	<h2> Library ! </h2>
  
 {% for demo in demos %}
     <div class="article">
-        <h3>{{ demo.title }}</h3>
+        <h3>  <a href="/library/demonstration/{{ demo.id }}/">( {{ demo.id }} ) {{ demo.title }} </a> </h3>
         <p> <i> {{ demo.lemma }} </i> </p>
         <p>{{ demo.content }}</p>
     </div>

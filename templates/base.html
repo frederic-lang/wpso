@@ -10,17 +10,20 @@
 	<header>
 		<div id="title">
 			<h1>SoogFish!</h1>
-			<h2>Welcome {{ user.username }}</h2> 
+			{% if user.is_authenticated %}
+			<h2>Hi {{ user.username }}</h2>
+			{% else %}
+			<h2> <a href="/accounts/login/">Log in</a> </h2>
+			{% endif %}
 		</div>
 		
 		<nav>
 			<ul>
-				<li><a href="/">HOME</a></li>
+				<li><a href="/library/home/">HOME</a></li>
 				<li><a href="/fishing/">DEMONSTRATE</a></li>
-				<li><a href="/doc/">DOC</a></li>
-				<li><a href="/example/">EXEMPLE</a></li>
-				<li><a href="/library/">LIBRARY</a></li>
-				<li><a href="/login/">LOG IN</a></li>
+				<li><a href="/library/doc/">DOC</a></li>
+				<li><a href="/library/example/">EXEMPLE</a></li>
+				<li><a href="/library/list/">LIBRARY</a></li>
 			</ul>
 		</nav>
 	</header>

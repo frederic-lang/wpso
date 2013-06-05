@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+
+ {% block content %}
+	<div id="proof">
+		<h2> ( {{ demo.id }} ) {{ demo.title }}</h2>
+		<h3> {{ demo.lemma }} </h3>
+		<p> <i>{{ demo.content }} </i></p>
+		<div id="aside">
+			<p> {{ demo.date }} by <b> {{ demo.author }} </b> </p>
+		</div>
+	</div>
+
+	
+ {% endblock %}

@@ -9,8 +9,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_URL = '/accounts/login/'
+LOGIN_REDIRECT_URL = '/library/home/'
 
 DATABASES = {
     'default': {
@@ -116,6 +116,7 @@ TEMPLATE_DIRS = (
 INSTALLED_APPS = (
     'logic',
     'library',
+    'accounts',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',

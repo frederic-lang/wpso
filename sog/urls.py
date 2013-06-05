@@ -8,13 +8,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'library.views.home'),
-	url(r'^home/$', 'library.views.home'),
 	url(r'^fishing/$', 'logic.views.fishing'),
-	url(r'^doc/$', 'library.views.doc'),
-	url(r'^example/$', 'library.views.example'),
-	url(r'^library/$', 'library.views.show'),
-	url(r'^login/$', 'django.contrib.auth.views.login'),
-	url(r'^logout/$', 'django.contrib.auth.views.logout'),
+	url(r'^library/', include('library.urls')),
+	url(r'^accounts/', include('accounts.urls')),
     # Examples:
     # url(r'^$', 'sog.views.home', name='home'),
     # url(r'^sog/', include('sog.foo.urls')),

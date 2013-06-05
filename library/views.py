@@ -12,6 +12,11 @@ def example(request):
   return render(request, 'library/example.html')
 
 def show(request):
-    """ Afficher tous les articles de notre blog """
+    """ Display all demonstrations """
     demos = Demonstration.objects.all() # Nous sélectionnons tous nos articles
     return render(request, 'library/library.html', {'demos':demos})
+    
+def demonstrationView(request, id):
+	"""Display a demonstration"""
+	d = Demonstration.objects.get(id=id)
+	return render(request, 'library/demonstrationView.html', {'demo':d})
