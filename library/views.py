@@ -19,4 +19,8 @@ def show(request):
 def demonstrationView(request, id):
 	"""Display a demonstration"""
 	d = Demonstration.objects.get(id=id)
-	return render(request, 'library/demonstrationView.html', {'demo':d})
+	d.views += 1
+	d.save()
+	sequents = d.sequents.split('<br/>')
+	proof = d.content.split('\n')
+	return render(request, 'library/demonstrationView.html', {'demo':d, 'sequents':sequents, 'proof':proof})

@@ -5,9 +5,20 @@
 	<div id="proof">
 		<h2> ( {{ demo.id }} ) {{ demo.title }}</h2>
 		<h3> {{ demo.lemma }} </h3>
-		<p> <i>{{ demo.content }} </i></p>
+		<p>
+			{% for tactic in proof %}
+				{{ tactic }}  <br/> 
+			{% endfor %}
+		</p>
+		<p> 
+			{% for s in sequents %}
+				{{ s }}  <br/> 
+			{% endfor %}
+		</p>
+		<p> {{ demo.comment }} </p>
+		<p> {{ demo.tags }} </p>	
 		<div id="aside">
-			<p> {{ demo.date }} by <b> {{ demo.author }} </b> </p>
+			<p> {{ demo.views }} views, writed the {{ demo.date }} by <b> {{ demo.author }} </b> </p>
 		</div>
 	</div>
 

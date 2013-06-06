@@ -2,18 +2,14 @@
 
 
  {% block content %}
- 	<h3> Edit Your Proof </h3>
- 	
- 	<div id="comment">
- 		<p> {{ comment }} </p>
- 	</div>
+ 	<h2> Save your Proof ! </h2>
  	
 	<div id="compiler">
 	
 		<div id="input">
 		<form action="" method="post">{% csrf_token %}
 			{{ form.as_p }}
-			<input type="submit" value="Compile" />
+			<input type="submit" value="Save" />
 		</form>
 		</div>
 	

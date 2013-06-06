@@ -11,7 +11,7 @@ class Compiler(object) :
 		self.printed = []
 		self.error = "no error"
 	def compileSuccessfully(self) :
-		#try :
+		try :
 			r = yacc_parse(self.text)
 			instructions = r[1]
 			self.sequents = [Sequent()]
@@ -21,11 +21,8 @@ class Compiler(object) :
 				args=i[1]
 				f(self.sequents, *args)
 			return True
-			
-			#except IndexError as e :
-			#	return [ "tu as probablement appelé un numéro de sequent ou de proposition qui n'existe pas", str(e) ]
-		#except Exception as e :
-		#	self.error = str(e)
+		except Exception as e :
+			self.error = str(e)
 			return False 
 	def getSequentsPrinted(self):
 		self.printed = range(len(self.sequents))
@@ -36,8 +33,12 @@ class Compiler(object) :
 		return str(self.sequents[-1].conclusion)
 	def getError(self) :
 		return self.error
-	def setText(self, t):
+	def setText(self, t = ""):
 		self.text = t
+	def getText(self):
+		return self.text
+	def couldBeFinished(self):
+		return len( self.sequents[-1].hyp) == 0
 
 if __name__ == "__main__" :
 	print "heyhey compiler"

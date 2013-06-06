@@ -8,9 +8,9 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
 	url(r'^$', 'library.views.home'),
-	url(r'^fishing/$', 'logic.views.fishing'),
 	url(r'^library/', include('library.urls')),
 	url(r'^accounts/', include('accounts.urls')),
+	url(r'^logic/', include('logic.urls')),
     # Examples:
     # url(r'^$', 'sog.views.home', name='home'),
     # url(r'^sog/', include('sog.foo.urls')),
