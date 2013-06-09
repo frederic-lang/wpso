@@ -1,8 +1,7 @@
 #-*- coding: utf-8 -*-
-from Node import Node
-from Sequent import Sequent
-from parser import *
-from lexer import *
+from mathplus.Node import Node
+from mathplus.Sequent import Sequent
+from parser import yacc_parse
 
 class Compiler(object) :
 	def __init__(self, text = "") :
@@ -27,7 +26,7 @@ class Compiler(object) :
 	def getSequentsPrinted(self):
 		self.printed = range(len(self.sequents))
 		for j in range(len(self.sequents)) :
-			self.printed[j] = "Séquent " + str(j) + " : " + str(self.sequents[j])
+			self.printed[j] = "Sequent " + str(j) + " : " + str(self.sequents[j])
 		return self.printed
 	def getConclusion(self) :
 		return str(self.sequents[-1].conclusion)
@@ -41,5 +40,10 @@ class Compiler(object) :
 		return len( self.sequents[-1].hyp) == 0
 
 if __name__ == "__main__" :
-	print "heyhey compiler"
+	print "votre demo est vraie : "
+	import sys
+	prog = file(sys.argv[1]).read()
+	c = Compiler(prog)
+	print c.compileSucessfully()
+	print c.getSequentsPrinted()
 		

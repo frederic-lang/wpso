@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-   <title>{% block title %}Soogfish{% endblock %}</title>
+   <title>{% block title %}When Peano Sets Out{% endblock %}</title>
     <link rel="stylesheet" type="text/css" media="all" href="/static/css/base.css" />
 </head>
  
 <body>
-<div id="bloc_page" >
+	<div id="page">
 	<header>
-		<div id="title">
-			<h1>SoogFish!</h1>
-			{% if user.is_authenticated %}
-			<h2>Hi {{ user.username }}</h2>
-			{% else %}
-			<h2> <a href="/accounts/login/">Log in</a> </h2>
-			{% endif %}
-		</div>
+		
+		<h1>WPSO</h1>
+		{% if user.is_authenticated %}
+		<h2>Hi {{ user.username }}</h2>
+		{% else %}
+		<h2> <a href="/accounts/login/">Log in</a> </h2>
+		{% endif %}
+		
 		
 		<nav>
 			<ul>
@@ -32,16 +32,19 @@
 
 	<section id="content">
 	       	{% block content %}
-       		<p>
-       		Soogfish est un site dédié à la vérification formelle de preuve. <br/>
-       		Allez voir à la section EXAMPLE pour voir un exemple de preuve. <br/>
-       		Vous pouvez aussi voir toutes les lemmes établis à la section LIBRARY. <br/>
-       		Vous devez être connecté pour éditer une preuve
-       		</p>
+	       	
+	       	<div id="panel">
+       			<img src="/static/img/atomic_fractal.jpg" alt="Image de Fractale" />
+       		</div>
+       		<div id="text">
+       		Bienvenue sur WPSO, le sité dédié à la formalisation de preuves mathématiques dans l'arithmétique de Peano. Vous pouvez voir toutes les preuves établies dans la section Library et si vous êtes connecté, démontrer un théorème dans la section Demonstrate.
+       		</div>
+       		
+       		
 	       	{% endblock %}
 	</section>
  
-<footer><br/>© frednboria</footer>
-</div>
+	<footer><a href="/about/">about</a></footer>
+	</div>
 </body>
 </html>

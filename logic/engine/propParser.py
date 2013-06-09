@@ -1,8 +1,7 @@
 #-*- coding: utf-8 -*-
 import ply.yacc as yacc
 from lexer import tokens
-from Node import Node
-from Sequent import Sequent
+from mathplus.Node import Node
 
 
 def p_expression_wordornumber(p):

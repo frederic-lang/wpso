@@ -5,16 +5,28 @@
 	<div id="proof">
 		<h2> ( {{ demo.id }} ) {{ demo.title }}</h2>
 		<h3> {{ demo.lemma }} </h3>
-		<p>
+		
+		<div>
+			<div id="tactics">
+			<p>
+			<code>
+			<br/>
 			{% for tactic in proof %}
 				{{ tactic }}  <br/> 
 			{% endfor %}
-		</p>
-		<p> 
+			</code>
+			</p>
+			</div>
+		
+			<div id="sequents">
+			<p> 
 			{% for s in sequents %}
 				{{ s }}  <br/> 
 			{% endfor %}
-		</p>
+			</p>
+			</div>
+		</div>
+		
 		<p> {{ demo.comment }} </p>
 		<p> {{ demo.tags }} </p>	
 		<div id="aside">

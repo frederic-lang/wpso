@@ -1,9 +1,8 @@
 #-*- coding: utf-8 -*-
 import ply.yacc as yacc
 from lexer import tokens
-from Node import Node
+from mathplus.Node import Node
 from calculus import matchInstruction
-from Sequent import Sequent
 
 def p_explist(p):
     '''explist :
@@ -37,7 +36,7 @@ def p_args(p) :
 def p_expression_wordornumber(p):
 	'''expression : WORD
 	 	      | NUMBER '''
-	p[0] = p[1]
+	p[0] = Node(p[1],[])
 
 def p_expression_quantifier(p):
 	''' expression : QUANTIFIER expression COMMA expression '''
@@ -50,6 +49,10 @@ def p_expression_op(p):
 def p_expression_not(p):
 	'''expression : NOT expression '''
 	p[0] = Node( "not", [p[2]] )
+
+def p_expression_group(t):
+	'''expression : LPAREN expression RPAREN'''
+	t[0] = t[2]
 	
 def p_error(e ):
 	raise Exception("error : %s" %e )

@@ -1,7 +1,7 @@
 #-*- coding: utf-8 -*-
 from django.shortcuts import render, redirect
 from logic.forms import CallForm, InformationForm
-from logic.mathplus.compiler import Compiler
+from logic.engine.compiler import Compiler
 from library.models import Demonstration
 from django.contrib.auth.decorators import login_required
 from django.http import Http404

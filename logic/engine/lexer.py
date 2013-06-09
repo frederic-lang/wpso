@@ -18,10 +18,10 @@ tokens = (
 
 t_COMMA = r','
 t_QUANTIFIER = r'forall|exists'
-t_OPERATOR = r'include|implies|belongs|and|or'
+t_OPERATOR = r'plus|equals|implies|and|or'
 t_WORD = r'\w+'
 t_INSTRUCTION = r'new|addhyp|trueintro|axiomintro|falseelim|andintro|left|right|orintroright|orintroleft|orelim|impliesintro|implieselim|notintro|notelim|forallintro|forallelim|existsintro|existselim|excludedmiddle|lemmaintro'
-t_NOT = r'ceciestunenegation|not'
+t_NOT = r'ceciestunenegation|not|S'
 t_RPAREN = r'\)'
 t_LPAREN = r'\('
 t_SEMICOLON = r';'
