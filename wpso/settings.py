@@ -1,4 +1,4 @@
-# Django settings for sog project.
+# Django settings for wpso project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -70,7 +70,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    '/home/fred/project/sog/public/static',
+    '/home/fred/project/wpso/public/static',
 )
 
 # List of finder classes that know how to find static files in
@@ -101,13 +101,13 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'sog.urls'
+ROOT_URLCONF = 'wpso.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'sog.wsgi.application'
+WSGI_APPLICATION = 'wpso.wsgi.application'
 
 TEMPLATE_DIRS = (
-	"/home/fred/project/sog/templates",
+	"/home/fred/project/wpso/templates",
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
