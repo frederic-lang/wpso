@@ -1,28 +1,28 @@
 {% extends "base.html" %}
 
  {% block content %}
- 	<h3> Example </h3>
+ 	<h3> 1er Exemple </h3>
+ 	<p> Pour comprendre comment fonctionne l'assistant de preuve, allez à la section Demonstrate, tapez <code> new(); </code> dans le formulaire puis cliquez sur le boutton 'compiler'. Normalement, vous venez de voir apparaitre le séquent 1 : gamma; |- True. Vous venez de créer le séquent avec aucune hypothèse et qui a pour conclusion la proposition 'True'. Vous pouvez maintenant, par exemple, vouloir ajouter l'hypothèse 'A implies B' à votre séquent : tapez <code> addhyp(1, A implies B); </code>. Enfin, tapez <code> axiomintro(2, 0); </code> pour passer cette hypothèses en conclusion de votre séquent. Pour aller plus loin, allez voir dans la section documentation pour connaître toutes les instructions disponibles.</p>
+ 	<h3> 2e Exemple </h3>
  	<p> Voici un exemple de démonstration. Ce code prouve la proposition "(not exists x, not A) implies (forall x, A)". Cela correspond au fait que s'il n'existe pas de contre-exemple x à la proposition A, alors cette A est vrai quelque soit x. </p>
 
 	<p>
 	<code>
-	addhyp(0,not A);<br/>
-	addhyp(0, not exists x, not A);<br/>
-	axiomintro(0, 0);<br/>
-	axiomintro(1, 0);<br/>
-	existsintro(1, v, x);<br/>
-	notelim(1,2);<br/>
-	falseelim(3, A);<br/>
-	new();<br/>
-	addhyp(4, not exists x, not A);<br/>
-	addhyp(4, A);<br/>
-	axiomintro(1,4);<br/>
-	new();<br/>
-	addhyp(6, not exists x, not A);<br/>
-	excludedmiddle(6, A);<br/>
-	orelim(7, 5, 3);<br/>
-	forallintro(8, x);<br/>
-	impliesintro(9,0);<br/>
+addhyp(0, not A);<br/>
+addhyp(1, not exists x, not A);<br/>
+axiomintro(0,2);<br/>
+axiomintro(1,2);<br/>
+existsintro(3,v,x);<br/>
+notelim(5,4);<br/>
+falseelim(6,A);<br/>
+addhyp(0, not exists x, not A);<br/>
+addhyp(8,A);<br/>
+axiomintro(1,9);<br/>
+excludedmiddle(A);<br/>
+addhyp(11, not exists x, not A);<br/>
+orelim(12, 10, 7);<br/>
+forallintro(13,x);<br/>
+impliesintro(14,0);
 	</code>
 	</p>
 

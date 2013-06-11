@@ -46,7 +46,7 @@ def andintro(sequents, i,j):
 	if seqa.hyp == seqb.hyp :
 		sequents.append( Sequent(seqa.hyp, Node("and", [seqa.conclusion, seqb.conclusion])))
 	else :
-		raise mException("Sequents don't have same hypothesis in this andintro")
+		raise Exception("Sequents don't have same hypothesis in this andintro")
 	
 def left(sequents, i):
 	i = i.name
@@ -72,11 +72,18 @@ def orelim(sequents, i, j, k): # à améliorer
 	seqor = sequents[i]
 	seqa = sequents[j]
 	seqb = sequents[k]
-	[a, b] = seqor.conclusion.children
-	if seqa.conclusion == seqb.conclusion and ( a in seqa.hyp) and ( b in seqb.hyp ) and seqor.conclusion.name == "or":
-		print "ca passe"
+	if seqor.conclusion.name == "or" :
+		[a, b] = seqor.conclusion.children
+	else :
+		raise Exception("Sequent " + str(i) + " hasn't a 'or' conclusion")
+	if not(seqa.conclusion == seqb.conclusion) :
+		raise Exception("Sequent j and k haven't the same conclusion")
+	else :
+		if not( a in seqa.hyp) :
+			raise Exception(" proposition " + str(a) + "doesn't belong to sequent "+ str(j) +"'s hypothesis") 
+		if not( b in seqb.hyp ):
+			raise Exception(" proposition " + str(a) + "doesn't belong to sequent "+ str(k) +"'s hypothesis") 
 		if seqa.hyp.remove(a) == seqb.hyp.remove(b) : 
-			print "ca repasse "
 			seqa.hyp.append(a)
 			sequents.append(Sequent(seqb.hyp, seqb.conclusion))
 			seqb.hyp.append(b)

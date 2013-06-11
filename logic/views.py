@@ -8,7 +8,6 @@ from django.http import Http404
 from library.views import demonstrationView
 
 
-@login_required
 def fishing(request):
 	if 'compiler' in request.session :
 		c = request.session['compiler']
