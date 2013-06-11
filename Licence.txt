@@ -1,6 +1,6 @@
 Copyright or © or Copr. Lang Frédéric
 
-<Votre email>
+lang@ensta.fr
 
 This software is a computer program whose purpose is to [describe
 functionalities and technical features of your software].
