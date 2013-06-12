@@ -6,13 +6,14 @@ from library.models import Demonstration
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from library.views import demonstrationView
+import pickle
 
 
 def fishing(request):
 	if 'compiler' in request.session :
 		c = request.session['compiler']
 	else :
-		request.session['compiler'] = Compiler()
+		request.session['compiler'] = Compiler("", request.user.is_staff)
 		c = request.session['compiler']	
 	if request.method == 'POST':  # S'il s'agit d'une requête POST
 		form = CallForm(request.POST)  # Nous reprenons les données
@@ -37,7 +38,7 @@ def fishing(request):
         	form = CallForm({'call':c.getText()}) # on récupère le brouillon s'il existe
         sequents = c.getSequentsPrinted() 
         request.session['compiler'] = c
-        return render(request, 'logic/fishing.html', {'sequents' : sequents, 'comment' : comment, 'form' : form })
+        return render(request, 'logic/fishing.html', {'sequents' : sequents, 'comment' : comment, 'form' : form, 'commentIsList': type(comment) == list })
 
 @login_required
 def save(request) :
@@ -48,6 +49,7 @@ def save(request) :
 	lemma = c.getConclusion()
 	content = c.getText()
 	sequents = c.getSequentsPrinted()
+	lemmaNode = pickle.dumps(c.getConclusionNode())
 	if request.method == 'GET' :
 		form = InformationForm()
 		return render(request, 'logic/save.html', { 'lemma' : lemma , 'form' : form, 'sequents' : sequents})
@@ -57,6 +59,7 @@ def save(request) :
 			title = form.cleaned_data['title']
 			tags = form.cleaned_data['tags']
 			comment = form.cleaned_data['comment']
+			roots = "0"
 			saved_demo = Demonstration(title = title,
 						   content = content, 
 						   lemma = lemma, 
@@ -65,7 +68,9 @@ def save(request) :
 						   sequents = '<br/>'.join(sequents),
 						   tags = tags,
 						   comment = comment,
-						   official = False)
+						   official = False,
+						   lemmaNode = lemmaNode,
+						   roots = roots)
 			saved_demo.save()
 			url = '/library/demonstration/' + str(saved_demo.id) + '/'
 			return redirect(url)

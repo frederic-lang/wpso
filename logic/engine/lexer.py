@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-import ply.lex as lex
+import mathplus.ply.lex as lex
 
 tokens = (
 'NUMBER',
@@ -40,7 +40,12 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
     
 def t_error ( t ) :
-	raise Exception(' Lexer : Illegal character, code ASCII : ' + str(ord(t.value[0])) )
+	c = t.value[0] 
+	if len(c) == 1 :
+		bonus =  '", code ASCII : ' + str(ord(c))
+	else :
+		bonus = '"'
+	raise Exception(' Lexer : Illegal character "' + str( c ) + bonus )
 	t.lexer.skip(1)
 
 lex.lex()

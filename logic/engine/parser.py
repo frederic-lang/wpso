@@ -1,5 +1,5 @@
 #-*- coding: utf-8 -*-
-import ply.yacc as yacc
+import mathplus.ply.yacc as yacc
 from lexer import tokens
 from mathplus.Node import Node
 from calculus import matchInstruction
@@ -48,7 +48,7 @@ def p_expression_op(p):
 
 def p_expression_not(p):
 	'''expression : NOT expression '''
-	p[0] = Node( "not", [p[2]] )
+	p[0] = Node( p[1], [p[2]] )
 
 def p_expression_group(t):
 	'''expression : LPAREN expression RPAREN'''

@@ -3,8 +3,8 @@
     Each function has for arguments "sequents", which is the list of sequents to manipulate, and "l", which is the list of indications"""
 from mathplus.Sequent import Sequent
 from mathplus.Node import Node
-from propParser import yacc_parse
 from library.models import Demonstration
+import pickle
 
 
 def new(sequents) :
@@ -29,7 +29,7 @@ def axiomintro(sequents, a,b) :
 def lemmaintro(sequents, n) :
 	n = n.name
 	lemma = Demonstration.objects.get(id = n)
-	c = yacc_parse(lemma.lemma)
+	c = pickle.loads(str(lemma.lemmaNode))
 	sequents.append(Sequent([], c))
 
 def falseelim(sequents, i, p):
@@ -50,13 +50,17 @@ def andintro(sequents, i,j):
 	
 def left(sequents, i):
 	i = i.name
-	if sequents[i].conclusion.name == "and" :
-		sequents[i].conclusion = sequents[i].conclusion.children[0]
+	s = sequents[i].copy()
+	if s.conclusion.name == "and" :
+		s.conclusion = s.conclusion.children[0]
+		sequents.append(s)
 
 def right(sequents, i):
 	i = i.name
-	if sequents[i].conclusion.name == "and" :
-		sequents[i].conclusion = sequents[i].conclusion.children[1]
+	s = sequents[i].copy()
+	if s.conclusion.name == "and" :
+		s.conclusion = s.conclusion.children[1]
+		sequents.append(s)
 
 def orintroright(sequents, i, q) :
 	sequents[i].conclusion = Node("or", [sequents[i].conclusion, q])
@@ -91,8 +95,8 @@ def orelim(sequents, i, j, k): # à améliorer
 def impliesintro(sequents, i, j):
 	i = i.name
 	j = j.name
-	s = sequents[i].copy()
-	h = s.hyp[j]
+	s = sequents[j].copy()
+	h = s.hyp[i]
 	s.hyp.remove(h)
 	s.conclusion = Node("implies", [h, s.conclusion])
 	sequents.append(s)
@@ -100,10 +104,10 @@ def impliesintro(sequents, i, j):
 def implieselim(sequents, i, j) :
 	i = i.name
 	j = j.name
-	aimpb = sequents[j]
-	a = sequents[i]
+	aimpb = sequents[j].copy()
+	a = sequents[i].copy()
 	if aimpb.conclusion.name == "implies" :
-		[ha, b] = aimpb.hyp.children
+		[ha, b] = aimpb.conclusion.children
 		if ha==a.conclusion and a.hyp == aimpb.hyp:
 			sequents.append(Sequent(a.hyp, b))
 			
@@ -159,8 +163,9 @@ def existselim(sequents, i, j) :
 		if a in sb.hyp and sb.hyp.remove(a) == sa.hyp :
 			pass
 
-def excludedmiddle(sequents, p) :
-	hyp = []
+def excludedmiddle(sequents, i, p) :
+	i = i.name
+	hyp = sequents[i].copy().hyp
 	sequents.append(Sequent(hyp, Node("or", [p, Node("not", [p])])))
 
 

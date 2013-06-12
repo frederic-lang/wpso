@@ -2,12 +2,12 @@
 
 
  {% block content %}
- 	<h3> Documentation </h3>
+ 	<h3> Syntaxe des instructions </h3>
  	<p>
- 	Chaque fonction permet de créer ou modifier des séquents.<br/> 
- 	Elles doivent être suivies d'un point virgule.<br/>
- 	Les arguments sont soit des entiers, soit des propositions avec une syntaxe correcte (ex :  forall x , x belongs y )<br/>
- 	Les séquents sont numérotés à partir de 0, ainsi que les propositions qui constituent les hypothèses d'un séquent<br/>
+ 	Une démonstration est composé d'une suite d'instructions, chacune créant un séquent à partir des séquent déjà créés ( sauf new(); )
+ 	Elles doivent être toutes suivies d'un point virgule.
+ 	Les arguments sont soit des entiers, soit des propositions avec une <b><a href="#prop">syntaxe correcte</a></b> (ex : exists x , x equals y ).
+ 	Les séquents sont numérotés à partir de 0 ( comme affiché ), ainsi que les propositions qui constituent les hypothèses d'un séquent (numéro non affiché).
  	Les fonctions ci-dessous ne permettent de construire que des séquent "justes"
  	<p> 
  	<ul>
@@ -23,7 +23,7 @@
     		<li>  <i> orintroright(i, p) : </i> remplace la conclusion du séquent i par une disjonction de son ancienne conclusion à gauche et de la proposition p à droite</li>
     		<li>  <i> orintroleft(i, p) : </i> Pareil mais inversement </li>
     		<li>  <i> orelim(i, j, k) : </i> si la conclusion du séquent est A\/B, que les séquents i et j ont la meme conclusion C et ont les mêmes hypothèses avec A et B en plus, crée le séquent de conclusion C sans les hypothèses A ni B </li>
-    		<li>  <i> impliesintro(i, j) : </i> dans le séquent i, passe l'hypothèse numéro i dans une implication dans la conclusion </li>
+    		<li>  <i> impliesintro(i, j) : </i> dans le séquent j, passe l'hypothèse numéro i dans une implication dans la conclusion </li>
     		<li>  <i> implieselim(i, j) : </i> Si le séquent j a une conclusion "A -> B" et que A est la conclusion du séquent i </li>
     		<li>  <i> notintro(i, j) : </i> Si le séquent a pour conclusion "False", elle est remplacée par la négation de l'hypothèse j</li>
     		<li>  <i> notelim(i, j) : </i> Si les séquent i et j ont les mêmes hypothèses et respectivement pour conclusion "P" et "not P", crée un séquent conclut par "False"</li>
@@ -36,7 +36,14 @@
 	</ul>
  	</p>
 
-
+	<h3 id="prop"> Syntaxe des propositions </h3>
+	<p> Une proposition est une construction de mots; 'True' et 'False' sont les propositions de base, atomiques, voici comment construire d'autres propositions plus complexes : </p>
+	<ul>
+		<li> <i> implies, and, or : </i> prennent 2 arguments de type PROP (deux propositions). syntaxe : A or B, A and B, A implies B</li>
+		<li> <i> forall, exists : </i> prennent 2 arguments, respectivement une variable (type VAR) et une proposition. syntaxe : forall x, P et exists x, P</li>
+		<li> <i> not : </i> prend un argument, une proposition. syntaxe : not P</li>
+		<li> <i> plus, equals : </i> prend deux arguments, de type TERM ou VAR. syntaxe : 1 plus 2 equals 3 </li>
+		<li> <i> S : </i> prend un argument de type TERM ou VAR. Syntaxe : S 1, S x </li>
 
 {% endblock %}
 

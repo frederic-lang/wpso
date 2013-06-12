@@ -1,11 +1,17 @@
 #-*- coding: utf-8 -*-
 from Node import Node
+from data.peanoLanguage import Type
 
 					
 class Sequent(object) :
 	def __init__(self, hyp = [], conclusion = Node("True")) :
 		self.hyp = list(hyp)
+		for h in hyp:
+			if not(h.type == Type.PROP) :
+				raise Exception( str(h) + " should be of type PROP ")
 		self.conclusion = conclusion.copy()
+		if not( conclusion.type == Type.PROP) :
+			raise Exception( str(conclusion) + " should be of type PROP")
 	def __str__(self) :
 		hypo = '; '.join([str(prop) for prop in self.hyp])
 		return 'gamma; ' + hypo + ' |- ' + str(self.conclusion)

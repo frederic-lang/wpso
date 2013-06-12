@@ -5,7 +5,15 @@
  	<h3> Edit Your Proof </h3>
  	
  	<div id="comment">
- 		<p> {{ comment }} </p>
+ 		{% if commentIsList %}
+ 		<p>
+			{% for l in comment %}
+    				{{ l }}<br/>
+			{% endfor %}
+		</p>
+ 		{% else %}
+		<p> {{ comment }} </p>
+		{% endif %}
  	</div>
  	
 	<div id="compiler">

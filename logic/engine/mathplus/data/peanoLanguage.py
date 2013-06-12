@@ -2,8 +2,17 @@
 
 def enum(**enums):
     return type('Enum', (), enums)
-Type = enum(UNDEFINED = 0, PROP = 1, TERM = 2, BOUNDTERM = 3, VAR = 4)
+Type = enum(UNDEFINED = 0, PROP = 1, TERM = 2, BOUNDVAR = 3, VAR = 4)
 
+def strtype(t):
+	if t == Type.PROP :
+		return "PROP"
+	if t == Type.TERM :
+		return "TERM"
+	if t == Type.BOUNDVAR :
+		return "BOUNDVAR"
+	if t == Type.VAR : 
+		return "VAR"
 
 # symbol["symbol_name"] = ( symbol_sort, ( tuple of its arguments sort ) , symbol_syntax_code )
 """ symbol syntax code :
@@ -13,8 +22,8 @@ Type = enum(UNDEFINED = 0, PROP = 1, TERM = 2, BOUNDTERM = 3, VAR = 4)
 	4 -> op x, y  """
 	
 symbol = {}
-symbol["forall"] = ( Type.PROP, (Type.BOUNDTERM, Type.PROP), 2 )
-symbol["exists"] = ( Type.PROP, (Type.BOUNDTERM, Type.PROP), 2 )
+symbol["forall"] = ( Type.PROP, (Type.BOUNDVAR, Type.PROP), 2 )
+symbol["exists"] = ( Type.PROP, (Type.BOUNDVAR, Type.PROP), 2 )
 symbol["implies"] = ( Type.PROP, (Type.PROP, Type.PROP), 4 )
 symbol["or"] = ( Type.PROP, (Type.PROP, Type.PROP), 4 )
 symbol["and"] = ( Type.PROP, (Type.PROP, Type.PROP), 4 )
