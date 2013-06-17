@@ -4,5 +4,90 @@
  	<h3> Exemple d'introduction à l'utilisation de l'assistant de preuve</h3>
  	<p> Pour comprendre comment fonctionne l'assistant de preuve, allez à la section Demonstrate, tapez <code> new(); </code> dans le formulaire puis cliquez sur le boutton 'compiler'. Normalement, vous venez de voir apparaitre le séquent 1 : gamma; |- True. Vous venez de créer le séquent avec aucune hypothèse et qui a pour conclusion la proposition 'True'. Vous pouvez maintenant, par exemple, vouloir ajouter l'hypothèse 'A implies B' à votre séquent : tapez <code> addhyp(1, A implies B); </code>. Enfin, tapez <code> axiomintro(2, 0); </code> pour passer cette hypothèses en conclusion de votre séquent. Pour aller plus loin, allez voir dans la section documentation pour connaître toutes les instructions disponibles.</p>
  	
-
+	<h3> Exemple d'une preuve complète</h3>
+	<p> Vous pouvez copier-coller le code pour voir qu'il fonctionne </p>
+	<p>
+			<code>
+			<br/>
+			
+				lemmaintro(3) <br/> 	
+				addhyp(1, x equals y);
+  <br/> 
+			
+				forallelim(2, x);
+  <br/> 
+			
+				forallelim(2, y);
+  <br/> 
+			
+				axiomintro(0,4);
+  <br/> 
+			
+				rewritinv(4,5);
+  <br/> 
+			
+				rewritinv(3,6);
+  <br/> 
+			
+				addhyp(2, (x plus k) equals (y plus k));
+  <br/> 
+			
+				axiomintro(1, 8);
+  <br/> 
+			
+				shiftequality(9);
+  <br/> 
+			
+				lemmaintro(4);
+  <br/> 
+			
+				addhyp(11, x equals y);
+  <br/> 
+			
+				addhyp(12, (x plus k) equals (y plus k));
+  <br/> 
+			
+				forallelim(13, x);
+  <br/> 
+			
+				forallelim(14, k);
+  <br/> 
+			
+				rewritinv(15, 10);
+  <br/> 
+			
+				forallelim(13, z);
+  <br/> 
+			
+				forallelim(17, k);
+  <br/> 
+			
+				forallintro(18, z);
+  <br/> 
+			
+				forallelim(19, y);
+  <br/> 
+			
+				rewritinv(20,16);
+  <br/> 
+			
+				impliesintro(1,21);
+  <br/> 
+			
+				forallintro(22, k);
+  <br/> 
+			
+				induction(7,23);
+  <br/> 
+			
+				impliesintro(0,24);
+  <br/> 
+			
+				forallintro(25, y);
+  <br/> 
+			
+				forallintro(26, x);  <br/> 
+			
+			</code>
+			</p>
  {% endblock %}

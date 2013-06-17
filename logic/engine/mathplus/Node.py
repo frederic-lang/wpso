@@ -18,7 +18,7 @@ def matchType(uptype, children) :
 class Node(object) :
 	def __init__(self, name = "True", children = []) :
 		self.name = name
-		self.children =  list(children)
+		self.children =  list([c.copy() for c in children])
 		if symbol.has_key(self.name) :
 			self.type = symbol[self.name][0]
 			self.syntaxCode = symbol[self.name][2]
@@ -43,7 +43,7 @@ class Node(object) :
 				raise Exception("a variable cannot have arguments")
 			
 	def substitute(self, x, y) :
-		""" replace Node x by Node y in the Tree build over self """
+		""" replace Node x by Node y in the Tree built over self """
 		def match(e) :
 			if e == x :
 				return y

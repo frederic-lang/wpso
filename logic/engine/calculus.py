@@ -138,11 +138,12 @@ def forallintro(sequents, i, x) :
 
 def forallelim(sequents, i, v) :
 	i = i.name
-	s = sequents[i]
+	s = sequents[i].copy()
 	if s.conclusion.name == "forall" :
 		[x, q] = s.conclusion.children
 		q.substitute(x, v)
 		s.conclusion = q
+		sequents.append(s)
 		
 # une des 2 fn ci dessous à améliorer
 		
@@ -168,9 +169,81 @@ def excludedmiddle(sequents, i, p) :
 	hyp = sequents[i].copy().hyp
 	sequents.append(Sequent(hyp, Node("or", [p, Node("not", [p])])))
 
+def induction(sequents, i, j) :
+	i = i.name
+	j = j.name
+	s = sequents[i]
+	t = sequents[j]
+	if not(s.hyp == t.hyp) :
+		raise Exception("sequent "+ str(i) + " and sequent " + str(j) + " should have same hypothesis")
+	if t.conclusion.name == "forall" :
+		k = t.conclusion.children[0]
+		imp = t.conclusion.children[1]
+		kplus1 = Node("S", [ Node("k", []) ])
+		if imp.name == "implies" :
+			p = imp.children[0].copy()
+			q = imp.children[1].copy()
+			q.substitute(kplus1, k)
+			if q == p :
+				q.substitute(k, Node(0, []))
+				if q == s.conclusion:
+					sequents.append(Sequent(s.hyp, Node("forall", [k, p])))
+				else :
+					raise Exception(" sequent " + str(i) + " should have for conclusion " + str(q))
+			else :
+				raise Exception( str(q) + " and " + str(p) + " should be equals ")
+		else :
+			raise Exception(" sequent " + str(j) + " should have a conclusion matching with 'forall k, P(k) implies P(S k)'")
+	else:
+		raise Exception("sequent " +str(j) + " should begin with 'forall' ")
+			
+			
+def rewrite(sequents, i, j) :
+	i = i.name
+	j = j.name
+	s = sequents[i]
+	t = sequents[j]
+	if s.hyp == t.hyp :
+		eq = s.conclusion.copy()
+		p = t.conclusion.copy()
+		if eq.name == "equals" :
+			[a,b] = s.conclusion.children
+			p.substitute(a,b)
+			sequents.append(Sequent(s.hyp, p))
+		else :
+			raise Exception(str(eq) + "should be an equality")
+	else :
+		raise Exception("sequent "+ str(i) + " and sequent " + str(j) + " should have same hypothesis")
+
+def rewritinv(sequents, i, j) :
+	i = i.name
+	j = j.name
+	s = sequents[i]
+	t = sequents[j]
+	if s.hyp == t.hyp :
+		eq = s.conclusion.copy()
+		p = t.conclusion.copy()
+		if eq.name == "equals" :
+			[a,b] = s.conclusion.children
+			p.substitute(b,a)
+			sequents.append(Sequent(s.hyp, p))
+		else :
+			raise Exception(str(eq) + "should be an equality")
+	else :
+		raise Exception("sequent "+ str(i) + " and sequent " + str(j) + " should have same hypothesis")
 
 
-
+def shiftequality(sequents, i):
+	i = i.name
+	s = sequents[i].copy()
+	eq = s.conclusion
+	if eq.name == "equals" :
+		[a,b] = eq.children
+		a = Node("S", [a])
+		b = Node("S", [b])
+		eq.children = [a,b]
+		sequents.append(Sequent(s.hyp, eq))
+		
 matchInstruction = {
 	"new" : new,
 	"addhyp" : addhyp,
@@ -192,7 +265,11 @@ matchInstruction = {
 	"forallelim" : forallelim,
 	"existsintro" : existsintro,
 	"existselim" : existselim,
-	"excludedmiddle" : excludedmiddle
+	"excludedmiddle" : excludedmiddle,
+	"induction" : induction,
+	"rewrite" : rewrite,
+	"rewritinv" : rewritinv,
+	"shiftequality" : shiftequality,
 	}
 
 
