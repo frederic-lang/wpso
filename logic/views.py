@@ -12,6 +12,7 @@ import pickle
 def fishing(request):
 	if 'compiler' in request.session :
 		c = request.session['compiler']
+		c.reset(request.user.is_staff)
 	else :
 		request.session['compiler'] = Compiler("", request.user.is_staff)
 		c = request.session['compiler']	
@@ -26,7 +27,7 @@ def fishing(request):
 					if c.couldBeFinished() :
 						return redirect('logic.views.save')
 					else :
-						comment = "You can't save your Proof, it isn't finished !"
+						comment = "You can't save your Proof, it isn't finished !<br/> and you don't belong to the staff" + str(request.user.is_staff)
 				else :
 					comment = "Successfully compiled !"
 			else :

@@ -32,6 +32,10 @@
     		<li>  <i> existsintro(i, v, x) : </i> remplace la conclusion P(v) du séquent i par "exists x, P(x)" </li>
     		<li>  <i> existselim(i, j) : </i> remplace la conclusion "exists x, P(x)" du séquent i par la conclusion du séquent j sans son hypothèse P(x)</li>
     		<li>  <i> excludedmiddle(i, p) : </i> remplace la conclusion du séquent i par "p or not p" </li>
+		<li> <i> induction(i,j) : </i> correspond au schéma de récurrence. Les séquents i et j doivent avoir les mêmes hypothèses. la conclusion du séquent i doit être de la forme "P(0)", et celle du séquent j " forall k, P(k) implies P(S k)" (rappel : S k est le successeur de k ) </li>
+		<li> <i> rewrite(i, j) : </i> Les séquents i et j doivent avoir les mêmes hypothèses. Si la conclusion du séquent i est une égalité tel que " a equals b", remplace dans la conclusion du séquent j toutes les ocurrences de a par b. </li>
+		<li> <i> rewritinv(i,j) : </i> comme rewrite(i,j), mais inversement : b est remplacé par a </li>
+		<li> <i> shiftequality(i) : </i> Si la conclusion du séquent i est une égalité " a equals b", la remplace par "S a equals S b"</li> 
 
 	</ul>
  	</p>

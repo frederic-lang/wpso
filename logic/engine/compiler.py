@@ -6,12 +6,12 @@ import sys, traceback
 from django.contrib.auth.models import User
 
 class Compiler(object) :
-	def __init__(self, text = "", is_superuser = False) :
+	def __init__(self, text = "", is_staff = False) :
 		self.text = text
 		self.sequents = [Sequent()]
 		self.printed = []
 		self.error = "no error"
-		self.is_superuser = is_superuser
+		self.is_staff = is_staff
 	def compileSuccessfully(self) :
 		try :
 			r = yacc_parse(self.text)
@@ -44,10 +44,12 @@ class Compiler(object) :
 	def getText(self):
 		return self.text
 	def couldBeFinished(self):
-		if self.is_superuser:
+		if self.is_staff or self.is_staff == 1:
 			return True
 		else :
 			return len( self.sequents[-1].hyp) == 0
+	def reset(self, is_staff):
+		self.is_staff = is_staff
 
 if __name__ == "__main__" :
 	print "votre demo est vraie : "

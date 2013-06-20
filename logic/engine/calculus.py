@@ -130,11 +130,15 @@ def notelim(sequents, i, j) :
 			sequents.append(Sequent(sequents[j].hyp, Node("False", [])))
 
 def forallintro(sequents, i, x) :
-	"""à améliorer"""
 	i = i.name
-	hyp = sequents[i].hyp
-	c = sequents[i].conclusion
+	s = sequents[i].copy()
+	hyp = s.hyp
+	c = s.conclusion
+	for p in hyp :
+		if p.isFreeVar(x) :
+			raise Exception(" forallintro is forbidden because " + str(x) + " shouldn't be a free variable of " + str(p))	
 	sequents.append(Sequent(hyp, Node("forall", [x, c])))
+	
 
 def forallelim(sequents, i, v) :
 	i = i.name
@@ -145,7 +149,6 @@ def forallelim(sequents, i, v) :
 		s.conclusion = q
 		sequents.append(s)
 		
-# une des 2 fn ci dessous à améliorer
 		
 def existsintro(sequents, i, v, x) :
 	i = i.name
@@ -157,12 +160,20 @@ def existsintro(sequents, i, v, x) :
 def existselim(sequents, i, j) :
 	i = i.name
 	j = j.name
-	sa = sequents[i]
-	sb = sequents[j]
+	sa = sequents[i].copy()
+	sb = sequents[j].copy()
 	if sa.conclusion.name == "exists" :
 		[x, a] = sa.conclusion.children
 		if a in sb.hyp and sb.hyp.remove(a) == sa.hyp :
-			pass
+			for p in sa.hyp : 
+				if p.isFreeVar(x) :
+					raise Exception(" existselim is forbidden because " + str(x) + " shouldn't be a free variable of " + str(p))
+				if sb.conclusion.isFreeVar(x) :
+					raise Exception(" existselim is forbidden because " + str(x) + " shouldn't be a free variable of " + str(sb.conclusion))
+				
+			sequents.append(Sequent(sa.hyp, sb.conclusion))
+		else : 
+			raise Exception( str(sb) + " and " + str(sa) + " should have same hypothesis." 
 
 def excludedmiddle(sequents, i, p) :
 	i = i.name

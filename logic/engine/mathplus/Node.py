@@ -64,14 +64,16 @@ class Node(object) :
 				return True
 		return x.name == self.name
 	def isFreeVar(self, x) :
+		if not(x.type == Type.VAR) :
+			raise Exception(str(x) + " should be of type VAR")
 		if self.name == 'forall' or self.name == 'exists' :
 			[ v, p] = self.children
-			if v.name == x.name :
+			if v == x :
 				return False
 			return p.isFreeVar(x)
 		else :
 			for c in self.children :
 				if c.isFreeVar(x) :
 					return True
-			return x.name == v.name
+			return x.name == self.name
 				
