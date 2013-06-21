@@ -173,7 +173,7 @@ def existselim(sequents, i, j) :
 				
 			sequents.append(Sequent(sa.hyp, sb.conclusion))
 		else : 
-			raise Exception( str(sb) + " and " + str(sa) + " should have same hypothesis." 
+			raise Exception( str(sb) + " and " + str(sa) + " should have same hypothesis." )
 
 def excludedmiddle(sequents, i, p) :
 	i = i.name
