@@ -2,7 +2,7 @@
 from django import forms
  
 class CallForm(forms.Form):
-	call = forms.CharField(widget=forms.Textarea)
+	call = forms.CharField(widget=forms.Textarea, required = False)
 	toBeSaved = forms.BooleanField(label = u'Save', required = False )
 
 class InformationForm(forms.Form):
