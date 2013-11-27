@@ -106,9 +106,8 @@ header h2
     font-size: 0.9em;
     margin-top: 0px;
     font-weight: normal;
-    position: absolute;
-    right: 10px;
-    top: 10px;
+    float: right;
+    margin-bottom: 0px;
 }
 
 
@@ -116,18 +115,17 @@ header h2
  
 nav
 {
-    display: inline-block;
+    clear: both;
+    display: block;
     text-align: right;
     font-family: 'HeaderPolice', serif;
-    position: absolute;
-    right: 50px;
-    top: 20px;
     color:white;
 }
  
 nav ul
 {
     list-style-type: none;
+    margin: 0px;
 }
  
 nav li
